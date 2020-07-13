@@ -17,11 +17,23 @@ const showResult = result => {
                         <td>${item.e_money}</td>
                     </tr>
                 `);
+        if (item.latitude) {
+            console.log(item.latitude)
+        }
+        else {
+            console.log("緯度なし");
+        };
+        if (item.longitude) {
+            console.log(item.longitude)
+        }
+        else {
+            console.log("経度なし");
+        };
     })
 }
 
-$(function() {
 
+function initMap() {
     let lat, lng;
     const url = "https://api.gnavi.co.jp/RestSearchAPI/v3/"
 
@@ -31,17 +43,25 @@ $(function() {
         // pcの現在位置がおかしいため固定する
         // lat = position.coords.latitude;
         // lng = position.coords.longitude;
-        lat=35.02725763144587;
-        lng=137.02609432481168;
+        lat = 35.02725763144587;
+        lng = 137.02609432481168;
 
         console.log(lat, lng);
+        // 緯度経度の取得
+        // latLng = new google.maps.LatLng(lat, lng);
+        // console.log(latLng);
+        // 地図の作成
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: new google.maps.LatLng(lat, lng),
+            zoom: 17
+        });
 
         const params = {
             keyid: "9be00fbaa95f4bcc1b759ab2072385e0",
             latitude: lat,
             longitude: lng,
             range: 5,
-            hit_per_page:20
+            hit_per_page: 20
         }
 
 
@@ -49,10 +69,11 @@ $(function() {
             console.log(result.total_hit_count);
             console.log(result.hit_per_page);
             console.log(result.rest.length);
+
             showResult(result);
         })
+
     }, () => {
         alert('位置情報取得に失敗しました');
     });
-
-})
+}

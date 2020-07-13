@@ -4,11 +4,13 @@
 <head>
     <meta charset="utf-8" />
     <title>ぐるなびAPIテスト</title>
+    <link rel="stylesheet" href="main.css" type="text/css" />
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 
 <body>
 
+    <div id="map"></div>
     <p id="total"></p>
     <table id="table" border="1">
         <tr>
@@ -28,7 +30,7 @@
 
 
     <script type="text/javascript" src="main.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACO5o4bBK3Qbvsn_TLgk5aX-ev86DH5EE"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACO5o4bBK3Qbvsn_TLgk5aX-ev86DH5EE&callback=initMap"></script>
 </body>
 
 </html>
