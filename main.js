@@ -1,10 +1,11 @@
 const showResult = result => {
     //該当件数
     console.log(result.tatal_hit_count);
-    $("#total").text(result.tatal_hit_count);
+    $("#total").text(result.total_hit_count+"件");
+    
     let i = 1;
 
-    result.rest.map((item,index) => {
+    result.rest.map((item, index) => {
         //表に要素を追加
         $("#table").append(`
                     <tr>
@@ -37,24 +38,28 @@ const showResult = result => {
             console.log("経度なし");
         };
 
-        //地図中に各店舗のマーカーを作成
-        marker = new google.maps.Marker({
-            position: new google.maps.LatLng(item.latitude, item.longitude),
-            title: item.name,
-            label: {
-                text: String(index+1),
-                color: "#fff",
-                fontWeight: 'bold',
-                fontSize: '14px'
-            },
-        });
-
-        // マーカーを地図中にセットする
-        marker.setMap(map);
+        showMarker(item,index);
 
     });
 };
 
+//飲食店の場所を地図上に表示
+const showMarker = (item,index) => {
+    //地図中に各店舗のマーカーを作成
+    marker = new google.maps.Marker({
+        position: new google.maps.LatLng(item.latitude, item.longitude),
+        title: item.name,
+        label: {
+            text: String(index + 1),
+            color: "#fff",
+            fontWeight: 'bold',
+            fontSize: '14px'
+        },
+    });
+
+    // マーカーを地図中にセットする
+    marker.setMap(map);
+};
 
 function initMap() {
     let lat, lng, i;
@@ -64,7 +69,7 @@ function initMap() {
 
         /*緯度経度の取得
         pcの現在位置がおかしいため固定する*/
-        
+
         lat = position.coords.latitude;
         lng = position.coords.longitude;
         /*lat = 35.02725763144587;
