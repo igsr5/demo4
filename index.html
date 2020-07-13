@@ -5,32 +5,34 @@
     <meta charset="utf-8" />
     <title>ぐるなびAPIテスト</title>
     <link rel="stylesheet" href="main.css" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 
 <body>
-    
-    <div id="map"></div>
-    <p id="total"></p>
-    <table id="table" border="1">
-        <tr>
-            <th>番号</th>
-            <th>店舗名</th>
-            <th>営業時間</th>
-            <th>電話番号</th>
-            <th>pcURL</th>
-            <th>phoneURL</th>
-            <th>アクセス</th>
-            <th>都道府県</th>
-            <th>PR</th>
-            <th>画像1</th>
-            <th>画像2</th>
-            <th>電子マネー</th>
-        </tr>
-    </table>
+    <div id="app">
+        <div id="map">{{greeting}}</div>
+        <p id="total"></p>
+        <table id="table" border="1">
+            <tr>
+                <th>番号</th>
+                <th>店舗名</th>
+                <th>営業時間</th>
+                <th>電話番号</th>
+                <th>pcURL</th>
+                <th>phoneURL</th>
+                <th>アクセス</th>
+                <th>都道府県</th>
+                <th>PR</th>
+                <th>画像1</th>
+                <th>画像2</th>
+                <th>電子マネー</th>
+            </tr>
+        </table>
+    </div>
 
-
-    <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="main_vue.js"></script>
+    <!--<script type="text/javascript" src="main.js"></script>-->
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACO5o4bBK3Qbvsn_TLgk5aX-ev86DH5EE&callback=initMap"></script>
 </body>
 
