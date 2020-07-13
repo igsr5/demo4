@@ -28,12 +28,28 @@
                 <th>画像2</th>
                 <th>電子マネー</th>
             </tr>
+
+            <tr v-for="(item,index) in result.rest">
+                <td>{{index+1}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.opentime}}</td>
+                <td>{{item.tel}}</td>
+                <td><a :href="item.url">pc版サイト</a></td>
+                <td><a :href="item.url_mobile">スマホ版サイト</a></td>
+                <td>{{item.access.station}}{{item.access.walk}}分</td>
+                <td>{{item.code.prefname}}</td>
+                <td>{{item.pr.pr_short}}</td>
+                <td><img :src="item.image_url.shop_image1"></td>
+                <td><img src="item.image_url.shop_image2"></td>
+                <td>{{item.e_money}}</td>
+            </tr>
         </table>
-        <!--<gurunabi-table></gurunabi-table>-->
+
+
     </div>
 
-    <!--<script type="text/javascript" src="main_vue.js"></script>-->
-    <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="main_vue.js"></script>
+    <!--<script type="text/javascript" src="main.js"></script>-->
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACO5o4bBK3Qbvsn_TLgk5aX-ev86DH5EE&callback=initMap"></script>
 </body>
 
