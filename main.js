@@ -1,9 +1,14 @@
 const showResult = result => {
+    //該当件数
     console.log(result.tatal_hit_count);
     $("#total").text(result.tatal_hit_count);
-    result.rest.map(item => {
+    let i = 1;
+
+    result.rest.map((item,index) => {
+        //表に要素を追加
         $("#table").append(`
                     <tr>
+                        <td>${index+1}</td>
                         <td>${item.name}</td>
                         <td>${item.opentime}</td>
                         <td>${item.tel}</td>
@@ -17,6 +22,8 @@ const showResult = result => {
                         <td>${item.e_money}</td>
                     </tr>
                 `);
+
+        //緯度経度の確認
         if (item.latitude) {
             console.log(item.latitude)
         }
@@ -29,32 +36,52 @@ const showResult = result => {
         else {
             console.log("経度なし");
         };
-    })
-}
+
+        //地図中に各店舗のマーカーを作成
+        marker = new google.maps.Marker({
+            position: new google.maps.LatLng(item.latitude, item.longitude),
+            title: item.name,
+            label: {
+                text: String(index+1),
+                color: "#fff",
+                fontWeight: 'bold',
+                fontSize: '14px'
+            },
+        });
+
+        // マーカーを地図中にセットする
+        marker.setMap(map);
+
+    });
+};
 
 
 function initMap() {
-    let lat, lng;
+    let lat, lng, i;
     const url = "https://api.gnavi.co.jp/RestSearchAPI/v3/"
 
     navigator.geolocation.getCurrentPosition((position) => {
 
-        // 緯度経度の取得
-        // pcの現在位置がおかしいため固定する
-        // lat = position.coords.latitude;
-        // lng = position.coords.longitude;
+        /*緯度経度の取得
+        pcの現在位置がおかしいため固定する*/
+        
+        /*lat = position.coords.latitude;
+        lng = position.coords.longitude;*/
         lat = 35.02725763144587;
         lng = 137.02609432481168;
 
         console.log(lat, lng);
+
         // 緯度経度の取得
-        // latLng = new google.maps.LatLng(lat, lng);
-        // console.log(latLng);
+        latLng = new google.maps.LatLng(lat, lng);
+
         // 地図の作成
         map = new google.maps.Map(document.getElementById('map'), {
-            center: new google.maps.LatLng(lat, lng),
-            zoom: 17
+            center: latLng,
+            zoom: 16
         });
+
+
 
         const params = {
             keyid: "9be00fbaa95f4bcc1b759ab2072385e0",
