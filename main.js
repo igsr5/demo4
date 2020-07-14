@@ -70,10 +70,10 @@ function initMap() {
         /*緯度経度の取得
         pcの現在位置がおかしいため固定する*/
 
-        // lat = position.coords.latitude;
-        // lng = position.coords.longitude;
-        lat = 35.02725763144587;
-        lng = 137.02609432481168;
+        lat = position.coords.latitude;
+        lng = position.coords.longitude;
+        /*lat = 35.02725763144587;
+        lng = 137.02609432481168;*/
 
         console.log(lat, lng);
 

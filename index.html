@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="main.css" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.css">
+
 </head>
 
 <body>
@@ -29,8 +31,8 @@
                 <th>電子マネー</th>
             </tr>
 
-            <tr v-for="(item,index) in result.rest">
-                <td>{{index+1}}</td>
+            <tr v-for="(item,index) in getItems">
+                <td>{{index+1+(currentPage-1)*10}}</td>
                 <td>{{item.name}}</td>
                 <td>{{item.opentime}}</td>
                 <td>{{item.tel}}</td>
@@ -45,9 +47,13 @@
             </tr>
         </table>
 
+        <paginate :page-count="getPageCount" :page-range="3" :margin-pages="2" :click-handler="clickCallback" :prev-text="'＜'" :next-text="'＞'" :container-class="'pagination'" :page-class="'page-item'">
+        </paginate>
+
 
     </div>
 
+    <script src="https://unpkg.com/vuejs-paginate@latest"></script>
     <script type="text/javascript" src="main_vue.js"></script>
     <!--<script type="text/javascript" src="main.js"></script>-->
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACO5o4bBK3Qbvsn_TLgk5aX-ev86DH5EE&callback=initMap"></script>
